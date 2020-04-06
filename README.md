@@ -27,7 +27,6 @@ var novo = await GerarLink(codOrc: '{CodOrc}',filial: '{codFilial}',parcelasLink
 }
 
 ## Respota Do Status
-Response Status {
 	{
         'Status': '0',
         "Info": {
@@ -40,8 +39,6 @@ Response Status {
           "Parcelas": '',
           "Valor": '',
         }
-      }
-
 }
 
 ## Respota Do Gerarl Link Com Erro
