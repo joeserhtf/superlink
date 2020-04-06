@@ -29,7 +29,7 @@ class CieloApi {
 
   static Future<dynamic> gerarLink(
     String orcamento,
-    double valor,
+    int valor,
     String acessToken,
     int parcela,
     String data,
@@ -61,7 +61,7 @@ class CieloApi {
       //print('Status: ${resposta.statusCode}');
       //print('Status: ${resposta.body}');
 
-      Map responseDecode = json.decode(resposta.body);
+      var responseDecode = json.decode(resposta.body);
       if(resposta.statusCode != 201){
         return {
           "id": 'Error',

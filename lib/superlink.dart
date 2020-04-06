@@ -27,7 +27,7 @@ Future GerarLink({
   String vencimento = formatter.format(amanha);
 
   //Transformação Valor Para Centavaos
-  var valorcent = (double.parse(valorOrc) * 100).roundToDouble();
+  var valorcent = (double.parse(valorOrc)*100).round().toInt();
 
   //Gerar Base
   var base = await CieloApi.getCredenciais(filial_link: filial);
@@ -44,14 +44,14 @@ Future GerarLink({
 
   if(fullLink['id'] == "Error"){
     return {
-      'STATUS': 'Error',
-      "INFO": fullLink["Body"],
+      'Status': 'Error',
+      "Info": fullLink["Body"],
     };
   }else {
     return {
-      'STATUS': 'Criado',
-      "INFO": {
-        "LINK": '${fullLink['shortUrl']}',
+      'Status': 'Criado',
+      "Info": {
+        "Link": '${fullLink['shortUrl']}',
         "IdLink": '${fullLink['id']}',
         "Vencimento": '${fullLink['expirationDate']}',
         "Parcelas": '${fullLink['maxNumberOfInstallments']}',
@@ -82,9 +82,9 @@ Future StatusLink({@required String filial, @required String codOrc}) async {
 
     if (id == 'Z') {
       return {
-        'STATUS': '0',
-        "INFO": {
-          "LINK": '',
+        'Status': '0',
+        "Info": {
+          "Link": '',
           "IdLink": '',
           "OrderNumber": '',
           "Vencimento": '',
@@ -157,9 +157,9 @@ Future StatusLink({@required String filial, @required String codOrc}) async {
     }
 
     return {
-      'STATUS': '$caso',
-      "INFO": {
-        "LINK": '${verlink['shortUrl'] ?? ''}',
+      "Status": '$caso',
+      "Info": {
+        "Link": '${verlink['shortUrl'] ?? ''}',
         "IdLink": '${verlink['id'] ?? ''}',
         "OrderNumber": '${status["orders"].isEmpty ? '' : status["orders"][0]["orderNumber"]}',
         "Vencimento": '${verlink["expirationDate"] ?? ''}',
