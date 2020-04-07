@@ -9,6 +9,7 @@ Future GerarLink({
   @required String codOrc,
   @required int parcelasLink,
   @required String filial,
+  @required String frete,
 }) async {
 
   //Pega Data Atual
@@ -36,7 +37,7 @@ Future GerarLink({
   var acesstoken = await CieloApi.gerarAuth(base);
 
   //Gerar Link
-  var fullLink = await CieloApi.gerarLink(codOrc, valorcent, acesstoken, parcelasLink, vencimento);
+  var fullLink = await CieloApi.gerarLink(codOrc, valorcent, acesstoken, parcelasLink, vencimento, frete);
 
   //Salvar Informaçoes Do Link Na Base Local
   var dados = await CieloApi.salvarDados(fullLink['id'], codOrc);

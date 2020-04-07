@@ -33,6 +33,7 @@ class CieloApi {
     String acessToken,
     int parcela,
     String data,
+      String frete,
   ) async {
     var url_cielo = 'https://cieloecommerce.cielo.com.br/api/public/v1/products/';
 
@@ -49,7 +50,11 @@ class CieloApi {
       "ExpirationDate": "$data", //$data
       "maxNumberOfInstallments": "$parcela",
       "quantity": 1,
-      "shipping": {"type": "Free", "name": "", "price": "0"}
+      "shipping": {
+        "type": frete == "0.00" ? "Free" : "FixedAmount",
+        "name": frete == "0.00" ? "" : "Carajás",
+        "price": frete == "0.00" ? 0 : (double.parse(frete).round().toInt())*100,
+      }
     };
 
     String json_params = json.encode(params);
