@@ -46,7 +46,7 @@ class CieloApi {
       "Type": "Payment",
       "name": "Orçamento $orcamento",
       "description": "Orçamento $orcamento",
-      "price": "$valor",
+      "price": "${frete == "0.00" ? valor.round().toInt() : (valor.roundToDouble()-((double.parse(frete).round().toInt())*100)) }", //valor.roundToDouble()
       "ExpirationDate": "$data", //$data
       "maxNumberOfInstallments": "$parcela",
       "quantity": 1,
