@@ -1,14 +1,61 @@
-# superlink
+# Superlink
 
-A new Flutter package project.
+Pacote Para Auxilio SuperLink
 
-## Getting Started
+## Uso
 
-This project is a starting point for a Dart
-[package](https://flutter.dev/developing-packages/),
-a library module containing code that can be shared easily across
-multiple Flutter or Dart projects.
+dev_dependencies:
 
-For help getting started with Flutter, view our 
-[online documentation](https://flutter.dev/docs), which offers tutorials, 
-samples, guidance on mobile development, and a full API reference.
+superlink:
+    path: ../superlink
+
+import 'package:superlink/superlink.dart';
+
+var status = await StatusLink(filial: '{codFilial}', codOrc: '{CodOrc}');
+
+var novo = await GerarLink(codOrc: '{CodOrc}',filial: '{codFilial}',parcelasLink: {int},valorOrc: '{ValorORc}');
+
+## Status{
+	Cod --------------- Descrição
+	0   --------------- Link Não Criado
+	1   --------------- Link Pago
+	2   --------------- Link Ativo Sem Vencimento
+	3   --------------- Link Ativo Com Vencimento
+	4   --------------- Link Expirado/Vencido
+	5   --------------- Link Autorizado
+	6   --------------- Link Com Pagamento Negado
+}
+
+## Respota Do Status
+	{
+        'Status': '0',
+        "Info": {
+          "Link": '',
+          "IdLink": '',
+          "OrderNumber": '',
+          "Vencimento": '',
+          "StatusPagamento": '',
+          "DataPagamento": '',
+          "Parcelas": '',
+          "Valor": '',
+        }
+}
+
+## Respota Do Gerarl Link Com Erro
+	{
+      'Status': 'Error',
+      "Info": fullLink["Body"],
+    }
+
+
+## Respota Do Gerarl Link Okay
+	{
+      'Status': 'Criado',
+      "Info": {
+        "Link": '${fullLink['shortUrl']}',
+        "IdLink": '${fullLink['id']}',
+        "Vencimento": '${fullLink['expirationDate']}',
+        "Parcelas": '${fullLink['maxNumberOfInstallments']}',
+        "Valor": '${fullLink['price']}',
+      }
+   }
